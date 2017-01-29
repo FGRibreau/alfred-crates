@@ -34,7 +34,7 @@ categories = ["development-tools"]
 # separated with a `/`.
 license = "MIT"
 
-include = ["src/main.rs", "Cargo.toml"]
+include = ["src/main.rs", "Cargo.toml", "info.plist", "info.png"]
 
 
 [dependencies]
