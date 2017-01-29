@@ -1,5 +1,7 @@
 Workflow for searching Rust crates from Alfred.
 
+<p align="center"><img src="screenshot.png"/></p>
+
 ## Commands
 
 * `cargo {query}`: search for Rust crates
