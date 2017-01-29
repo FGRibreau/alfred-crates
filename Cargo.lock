@@ -2,16 +2,7 @@
 name = "alfred-crates"
 version = "0.1.0"
 dependencies = [
- "alfred 2.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "crates-io 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "alfred"
-version = "2.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-dependencies = [
- "rustc-serialize 0.3.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -181,7 +172,6 @@ version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
-"checksum alfred 2.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "e51ca2cadb530ab20240eef10eab930d1c913ec5356425093b6877f8533ab7b2"
 "checksum crates-io 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1739d2ca574588a526454009739f0f188ebe2df2db27c4669e3c3f252b0a962c"
 "checksum curl 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)" = "52f97f136f098f09c5d377e150afde7b29f43690cd1d80edb71409fda11c904e"
 "checksum curl-sys 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)" = "ec50c305e9de46198e8911556355f4aea46f2002cb25d2388d421404e91b60d9"
