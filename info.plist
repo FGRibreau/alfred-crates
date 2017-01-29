@@ -94,17 +94,7 @@ open $url</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Workflow for searching Rust crates from Alfred.
-
-## Commands
-
-* `cargo {query}`: Search for crates
-
-## Additional Notes
-
-This workflow require constant internet connection.
-
-It can break from time to time due to changes by the provider of the repo. If you notice a workflow stops working, post it at https://github.com/fgribreau/alfred-crates/issues.</string>
+	<string>See https://github.com/FGRibreau/alfred-crates</string>
 	<key>uidata</key>
 	<dict>
 		<key>60C09205-6FC1-4201-9FED-69858A8422D9</key>
