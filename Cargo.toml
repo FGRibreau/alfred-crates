@@ -38,5 +38,4 @@ include = ["src/main.rs", "Cargo.toml", "info.plist", "info.png"]
 
 
 [dependencies]
-alfred = "2.0"
 crates-io = "0.5.0"
