@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.fgribreau.alfredworkflow.crates</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>6C68D0BB-A89A-4FDD-BB99-B5A5B460646E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>60C09205-6FC1-4201-9FED-69858A8422D9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Francois-Guillaume Ribreau</string>
+	<key>description</key>
+	<string>Workflow for searching crates on cargo.io from Alfred</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Rust crates search</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query="{query}";
+
+id=$(echo $query | cut -d "|" -f1)
+url=$(echo $query | cut -d "|" -f2)
+pkgstr=$(echo $query | cut -d "|" -f3)
+
+open $url</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>60C09205-6FC1-4201-9FED-69858A8422D9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>cargo</string>
+				<key>queuedelaycustom</key>
+				<integer>2</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching for crates...</string>
+				<key>script</key>
+				<string>./target/release/alfred-crates "{query}"</string>
+				<key>subtext</key>
+				<string>Search for Rust Crates</string>
+				<key>title</key>
+				<string>Cargo search</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6C68D0BB-A89A-4FDD-BB99-B5A5B460646E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Workflow for searching Rust crates from Alfred.
+
+## Commands
+
+* `cargo {query}`: Search for crates
+
+## Additional Notes
+
+This workflow require constant internet connection.
+
+It can break from time to time due to changes by the provider of the repo. If you notice a workflow stops working, post it at https://github.com/fgribreau/alfred-crates/issues.</string>
+	<key>uidata</key>
+	<dict>
+		<key>60C09205-6FC1-4201-9FED-69858A8422D9</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+		<key>6C68D0BB-A89A-4FDD-BB99-B5A5B460646E</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>fgribreau.com</string>
+</dict>
+</plist>
