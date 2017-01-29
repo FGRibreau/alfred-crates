@@ -1,6 +1,6 @@
 [root]
 name = "alfred-crates"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "crates-io 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
