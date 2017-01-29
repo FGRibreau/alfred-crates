@@ -39,9 +39,9 @@ fn workflow_output(crates: Vec<Crate>){
     println!("<?xml version=\"1.0\"?>");
     println!("<items>");
     // https://www.alfredapp.com/help/workflows/inputs/script-filter/xml/
-    crates.iter().inspect(|krate| {
+    for krate in crates{
         let escaped_name = escape_str_pcdata(&krate.name);
-        println!("<item arg=\"{}/crates/{}\" type=\"url\"><title><![CDATA[{}]]></title><subtitle><![CDATA[{}]]></subtitle></item>", HOST, escaped_name,escaped_name, escape_str_pcdata(&krate.description.clone().unwrap_or(String::from(""))))
-    }).collect::<Vec<_>>();
+        println!("<item arg=\"{}/crates/{}\" type=\"url\"><title><![CDATA[{}]]></title><subtitle><![CDATA[{}]]></subtitle></item>", HOST, escaped_name,escaped_name, escape_str_pcdata(&krate.description.clone().unwrap_or(String::from(""))));
+    }
     println!("</items>");
 }
