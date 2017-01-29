@@ -28,6 +28,6 @@ fn workflow_output(crates: Vec<Crate>){
     println!("<?xml version=\"1.0\"?>");
     println!("<items>");
     // https://www.alfredapp.com/help/workflows/inputs/script-filter/xml/
-    crates.iter().inspect(|krate| println!("<item arg=\"{}/crates/{}\" type=\"url\"><title>{}</title><subtitle>{}</subtitle></item>", HOST, krate.name,krate.name, krate.description.clone().unwrap_or(String::from("")))).collect::<Vec<_>>();
+    crates.iter().inspect(|krate| println!("<item arg=\"{}/crates/{}\" type=\"url\"><title><![CDATA[{}]]></title><subtitle><![CDATA[{}]]></subtitle></item>", HOST, krate.name,krate.name, krate.description.clone().unwrap_or(String::from("")))).collect::<Vec<_>>();
     println!("</items>");
 }
