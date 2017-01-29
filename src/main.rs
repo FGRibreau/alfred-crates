@@ -1,17 +1,26 @@
 extern crate crates_io;
 extern crate xml;
+extern crate clap;
 
-use std::env;
+use clap::{Arg, App};
 use xml::escape::escape_str_pcdata;
 use crates_io::{Registry, Crate};
 
 const HOST: &'static str = "https://crates.io";
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    assert!(args.len() > 0, "Usage: ./alfred-crates [query]");
+    // access metadata from cargo package http://stackoverflow.com/a/27841363/745121
+    let args = App::new(env!("CARGO_PKG_NAME"))
+        .version(env!("CARGO_PKG_VERSION"))
+        .author(env!("CARGO_PKG_AUTHORS"))
+        .about(env!("CARGO_PKG_DESCRIPTION"))
+        .arg(Arg::with_name("query")
+            .short("q")
+            .required(true)
+            .index(1))
+        .get_matches();
 
-    let ref query = args[1];
+    let query = args.value_of("query").unwrap();
     let mut registry = Registry::new(String::from(HOST), None);
 
     match registry.search(&query, 10) {
