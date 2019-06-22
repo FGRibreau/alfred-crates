@@ -20,9 +20,14 @@ fn main() {
         .get_matches();
 
     let mut easy_client = Easy::new();
-    easy_client
-        .useragent("Alfred Crates (robjtede fork)")
-        .unwrap();
+    let useragent = [
+        env!("CARGO_PKG_NAME"),
+        " (v",
+        env!("CARGO_PKG_VERSION"),
+        ")",
+    ]
+    .concat();
+    easy_client.useragent(useragent.as_str()).unwrap();
 
     let query = args.value_of("query").unwrap();
     let mut registry = Registry::new_handle(String::from(HOST), None, easy_client);
@@ -55,7 +60,8 @@ fn workflow_output(crates: Vec<Crate>, json: bool) {
         .map(|item| {
             let url = format!("{}/crates/{}", HOST, item.name);
             alfred::ItemBuilder::new(item.name)
-                .arg(url)
+                .arg(url.clone())
+                .quicklook_url(url)
                 .text_large_type(item.description.clone().unwrap_or(String::from("")))
                 .subtitle(item.description.unwrap_or(String::from("")))
                 .into_item()
