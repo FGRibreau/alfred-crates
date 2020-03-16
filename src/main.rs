@@ -1,10 +1,12 @@
-extern crate crates_io;
-extern crate xml;
+extern crate alfred;
 extern crate clap;
+extern crate crates_io;
+extern crate curl;
 
-use clap::{Arg, App};
-use xml::escape::escape_str_pcdata;
-use crates_io::{Registry, Crate};
+use clap::{App, Arg};
+use crates_io::{Crate, Registry};
+use curl::easy::Easy;
+use std::io;
 
 const HOST: &'static str = "https://crates.io";
 
@@ -14,34 +16,62 @@ fn main() {
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
-        .arg(Arg::with_name("query")
-            .short("q")
-            .required(true)
-            .index(1))
+        .arg(Arg::with_name("query").short("q").required(true).index(1))
         .get_matches();
 
-    let query = args.value_of("query").unwrap();
-    let mut registry = Registry::new(String::from(HOST), None);
+    let mut easy_client = Easy::new();
+    let useragent = [
+        env!("CARGO_PKG_NAME"),
+        " (v",
+        env!("CARGO_PKG_VERSION"),
+        ")",
+    ]
+    .concat();
+    easy_client.useragent(useragent.as_str()).unwrap();
 
+    let query = args.value_of("query").unwrap();
+    let mut registry = Registry::new_handle(String::from(HOST), None, easy_client);
+
+    let mut json = false;
     match registry.search(&query, 10) {
         Ok((crates, _)) => {
-            workflow_output(crates);
+            if let Some(version) = alfred::env::version() {
+                if version.starts_with("1") || version.starts_with("2") {
+                    // only XML support
+                    json = false;
+                } else {
+                    // JSON support
+                    json = true;
+                }
+            }
+            workflow_output(crates, json);
             return ();
-        },
+        }
         Err(_) => {
             // @todo find a way in alfred to inform about the error
-            workflow_output(vec![])
+            workflow_output(vec![], json)
         }
     }
 }
 
-fn workflow_output(crates: Vec<Crate>){
-    println!("<?xml version=\"1.0\"?>");
-    println!("<items>");
-    // https://www.alfredapp.com/help/workflows/inputs/script-filter/xml/
-    for krate in crates{
-        let escaped_name = escape_str_pcdata(&krate.name);
-        println!("<item arg=\"{}/crates/{}\" type=\"url\"><title><![CDATA[{}]]></title><subtitle><![CDATA[{}]]></subtitle></item>", HOST, escaped_name,escaped_name, escape_str_pcdata(&krate.description.clone().unwrap_or(String::from(""))));
+fn workflow_output(crates: Vec<Crate>, json: bool) {
+    let items = crates
+        .into_iter()
+        .map(|item| {
+            let url = format!("{}/crates/{}", HOST, item.name);
+            alfred::ItemBuilder::new(item.name)
+                .arg(url.clone())
+                .quicklook_url(url)
+                .text_large_type(item.description.clone().unwrap_or(String::from("")))
+                .subtitle(item.description.unwrap_or(String::from("")))
+                .into_item()
+        })
+        .collect::<Vec<alfred::Item>>();
+    if json {
+        alfred::json::Builder::with_items(&items)
+            .write(io::stdout())
+            .expect("Couldn't write items to Alfred");
+    } else {
+        alfred::xml::write_items(io::stdout(), &items).expect("Couldn't write items to Alfred");
     }
-    println!("</items>");
 }
