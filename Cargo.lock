@@ -10,7 +10,7 @@ dependencies = [
 
 [[package]]
 name = "alfred-crates"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "alfred 4.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)",

@@ -1,6 +1,6 @@
 [package]
 name = "alfred-crates"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["François-Guillaume Ribreau <rust@fgribreau.com>"]
 
 # A short blurb about the package. This is not rendered in any format when
