@@ -40,7 +40,7 @@ include = ["src/main.rs", "Cargo.toml", "info.plist", "info.png"]
 [dependencies]
 crates-io = "0.24"
 curl = "0.4.22"
-alfred = "4.0.1"
+alfred = "4.0.2"
 
 
 [dependencies.clap]
