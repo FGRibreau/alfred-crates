@@ -13,7 +13,7 @@ name = "alfred-crates"
 version = "1.0.3-alpha.0"
 dependencies = [
  "alfred 4.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "clap 2.33.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "crates-io 0.24.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "curl 0.4.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -75,7 +75,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "clap"
-version = "2.33.0"
+version = "2.33.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "bitflags 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -440,7 +440,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum bytes 0.4.12 (registry+https://github.com/rust-lang/crates.io-index)" = "206fdffcfa2df7cbe15601ef46c813fce0965eb3286db6b56c583b814b51c81c"
 "checksum cc 1.0.37 (registry+https://github.com/rust-lang/crates.io-index)" = "39f75544d7bbaf57560d2168f28fd649ff9c76153874db88bdbdfd839b1a7e7d"
 "checksum cfg-if 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)" = "b486ce3ccf7ffd79fdeb678eac06a9e6c09fc88d33836340becb8fffe87c5e33"
-"checksum clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)" = "5067f5bb2d80ef5d68b4c87db81601f0b75bca627bc2ef76b141d7b846a3c6d9"
+"checksum clap 2.33.1 (registry+https://github.com/rust-lang/crates.io-index)" = "bdfa80d47f954d53a35a64987ca1422f495b8d6483c0fe9f7117b36c2a792129"
 "checksum crates-io 0.24.0 (registry+https://github.com/rust-lang/crates.io-index)" = "49095fe6e157645809a05d3d4171b9c439bcc2b8aa0bf4322d15d35e05fd26fe"
 "checksum curl 0.4.22 (registry+https://github.com/rust-lang/crates.io-index)" = "f8ed9a22aa8c4e49ac0c896279ef532a43a7df2f54fcd19fa36960de029f965f"
 "checksum curl-sys 0.4.19 (registry+https://github.com/rust-lang/crates.io-index)" = "d2427916f870661c5473e41bb7a5ac08d1a01ae1a4db495f724e7b7212e40a73"
